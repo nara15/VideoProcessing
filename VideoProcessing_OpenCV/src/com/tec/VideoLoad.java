@@ -11,13 +11,13 @@ public class VideoLoad
 	{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat frame = new Mat();
+		//VideoCapture camera = new VideoCapture("C:/Users/Jose Mario/Videos/segTemporal1.avi");
 		VideoCapture camera = new VideoCapture();
-		camera.open("C:/Users/Jose Mario/Videos/hola.3gp");
+		System.out.println(camera.open("cut1_360.avi"));
 		int i = 0;
-		
+/*		
 		while(true)
 		{
-			System.out.println(camera.isOpened());
 			if (camera.read(frame))
 			{
 				Highgui.imwrite("C:/Users/Jose Mario/OneDrive/TEC/ASEGURAMIENTO DE LA CALIDAD DE SOFTWARE/PROYECTOS/IMAGE PROCESSING/Frames/"+(i++)+".jpg", frame);
@@ -27,6 +27,6 @@ public class VideoLoad
 				break;
 			}
 		}
-		
+*/		
 	}
 }
