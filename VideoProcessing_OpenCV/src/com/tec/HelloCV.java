@@ -8,5 +8,6 @@ public class HelloCV
 	{
 		System.out.println("Hola OpenCV");
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
 	}
 }
