@@ -13,7 +13,7 @@ public class VideoLoad
 		Mat frame = new Mat();
 		//VideoCapture camera = new VideoCapture("C:/Users/Jose Mario/Videos/segTemporal1.avi");
 		VideoCapture camera = new VideoCapture();
-		System.out.println(camera.open("cut1_360.avi"));
+		System.out.println(camera.open("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Videos/soccer_video.avi"));
 		int i = 0;
 /*		
 		while(true)
