@@ -25,7 +25,7 @@ public class BackgroundRemoval
 		
 		//int thresh_type = Imgproc.THRESH_BINARY_INV;
 		
-		int thresh_type = Imgproc.THRESH_BINARY;
+		int thresh_type = Imgproc.THRESH_BINARY_INV;
 		
 		// threshold the image with the average hue value
 		hsvImg.create(frame.size(), CvType.CV_8U);
@@ -44,7 +44,7 @@ public class BackgroundRemoval
 		Imgproc.dilate(thresholdImg, thresholdImg, new Mat(), new Point(-1, -1), 1);
 		Imgproc.erode(thresholdImg, thresholdImg, new Mat(), new Point(-1, -1), 3);
 		
-		Imgproc.threshold(thresholdImg, thresholdImg, threshValue, 179.0, Imgproc.THRESH_BINARY);
+		Imgproc.threshold(thresholdImg, thresholdImg, threshValue, 180, Imgproc.THRESH_BINARY);
 		
 		// create the new image
 		Mat foreground = new Mat(frame.size(), CvType.CV_8UC3, new Scalar(255, 255, 255));
@@ -87,9 +87,9 @@ public class BackgroundRemoval
 	{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		
-		Mat source = Highgui.imread("C:/Users/Jose Mario/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Images/0.jpg");
+		Mat source = Highgui.imread("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Frames/12.jpg");
 		Mat destination = doBackgroundRemoval(source);
-		Highgui.imwrite("C:/Users/Jose Mario/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Images/dest.jpg", destination);
+		Highgui.imwrite("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Images/dest.jpg", destination);
 	}
 
 }
