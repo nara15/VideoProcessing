@@ -21,6 +21,7 @@ public class FieldDetection
 		
 		video.open("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Videos/soccer_video.avi");
 		
+		
 		while (true)
 		{
 			if (video.read(frame))
@@ -33,6 +34,5 @@ public class FieldDetection
 				break;
 			}
 		}
-		
 	}
 }
