@@ -19,9 +19,9 @@ public class FieldDetection
 		Mat result = new Mat();
 		int i = 0;
 		
-		video.open("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Videos/soccer_video.avi");
+		video.open("src/soccer_video.avi");
 		
-		
+	
 		while (true)
 		{
 			if (video.read(frame))
