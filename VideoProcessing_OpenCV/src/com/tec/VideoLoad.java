@@ -11,11 +11,19 @@ public class VideoLoad
 	{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat frame = new Mat();
-		//VideoCapture camera = new VideoCapture("C:/Users/Jose Mario/Videos/segTemporal1.avi");
 		VideoCapture camera = new VideoCapture();
-		camera.open("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Videos/soccer_video.avi");
+		camera.open("src/soccer_video.avi");
+		
 		int i = 0;
 		
+		camera.read(frame);
+		camera.read(frame);
+		camera.read(frame);
+		
+		camera.read(frame);
+		
+		Highgui.imwrite("images/result.jpg", frame);
+/*		
 		while(true)
 		{
 			if (camera.read(frame))
@@ -27,6 +35,6 @@ public class VideoLoad
 				break;
 			}
 		}
-		
+	*/	
 	}
 }
