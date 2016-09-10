@@ -49,10 +49,6 @@ public class Blue
 		Core.bitwise_and(image, image,res, mask);
 		
 		
-		//Imgproc.dilate(mask, mask, new Mat(), new Point(-1, -1), 1);
-		//Imgproc.erode(mask, mask, new Mat(), new Point(-1, -1), 2);
-		
-		
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_OPEN, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_CLOSE, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		
