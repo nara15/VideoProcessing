@@ -25,51 +25,11 @@ import org.opencv.core.Size;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
+import com.utils.ShowImage;
+
 public class Red 
 {
-	public static void showResult(Mat img) {
-	    Imgproc.resize(img, img, new Size(640, 480));
-	    MatOfByte matOfByte = new MatOfByte();
-	    Highgui.imencode(".jpg", img, matOfByte);
-	    byte[] byteArray = matOfByte.toArray();
-	    BufferedImage bufImage = null;
-	    try {
-	        InputStream in = new ByteArrayInputStream(byteArray);
-	        bufImage = ImageIO.read(in);
-	        JFrame frame = new JFrame();
-	        frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));
-	        frame.pack();
-	        frame.setVisible(true);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
 	
-	public double getHistAverage(Mat pHsvImage, Mat pHueValues)
-	{
-		double average = 0.0;
-		Mat hist_hue = new Mat();
-		
-		// 0 to 180: which is the range for Hue values
-		MatOfInt histSize = new MatOfInt(180);
-		List<Mat> hue = new ArrayList<>();
-		hue.add(pHueValues);
-		
-		// Compute the histogram for the hue on the image
-		Imgproc.calcHist(hue, new MatOfInt(0), new Mat(), hist_hue, histSize, new MatOfFloat(0,179));
-		
-		
-		// Getting the average hue value from the image
-		// It gets the hue of each pixel in the image, add them and
-		// divide for the image size (height and width)
-		for (int h = 0; h < 180; h ++)
-		{
-			average += (hist_hue.get(h, 0)[0] * h);
-		}
-		
-		return average = average / pHsvImage.size().height / pHsvImage.size().width;
-	}
-
 	public static void main(String args[])
 	{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -81,40 +41,33 @@ public class Red
 		Imgproc.cvtColor(image, hsv, Imgproc.COLOR_BGR2HSV);
 		
 		
-		
-		//Color verde
-		Scalar lower_blue = new Scalar(45,0,0);
-		Scalar upper_blue = new Scalar(75,255,255);
-		
-		Mat mask = new Mat();
-		mask.create(image.size(), CvType.CV_8U);
-		Core.inRange(hsv, lower_blue, upper_blue, mask);
-		
-		Mat res = new Mat();
-		Core.bitwise_and(image, image,res, mask);
-		
-	
-		
-	
-		showResult(mask);
+		ArrayList<Mat> planes = new ArrayList<Mat>();
+		Core.split(hsv, planes);
 		
 		
+		Mat normalHSV = new Mat();		
+		Core.normalize(planes.get(1), normalHSV, 255, 0, Core.NORM_MINMAX);
 		
-		Imgproc.dilate(mask, mask, new Mat(), new Point(-1, -1), 1);
-		Imgproc.erode(mask, mask, new Mat(), new Point(-1, -1), 3);
-		
-		Imgproc.dilate(mask, mask, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(70,70)));
-		Imgproc.erode(mask, mask, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(70,70)));
-		
-		
-		
-		Core.bitwise_and(image, image,res, mask);
 
 		
-				
+		Mat mu = new Mat();
+		Imgproc.blur(normalHSV, mu, new Size(5,5));
 		
-		showResult(res);
+		Core.absdiff(mu, normalHSV, mu);
 		
+		Core.pow(mu, 2.0, mu);
+		
+		Mat finalMa = new Mat();
+		Imgproc.threshold(mu, finalMa, 255, 0, Imgproc.THRESH_TOZERO_INV);
+		
+		
+		ShowImage.showResult(finalMa);
+		
+		
+		hsv.release();
+		image.release();
+		normalHSV.release();
+		finalMa.release();
 		
 		
 	}
