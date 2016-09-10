@@ -38,7 +38,7 @@ public class Red
 
 		
 		Mat mu = new Mat();
-		Imgproc.blur(normalHSV, mu, new Size(5,5));
+		Imgproc.blur(normalHSV, mu, new Size(15,15));
 		
 		Core.absdiff(mu, normalHSV, mu);
 		
