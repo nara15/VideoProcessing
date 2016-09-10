@@ -16,25 +16,18 @@ public class VideoLoad
 		
 		int i = 0;
 		
-		camera.read(frame);
-		camera.read(frame);
-		camera.read(frame);
 		
-		camera.read(frame);
-		
-		Highgui.imwrite("images/result.jpg", frame);
-/*		
 		while(true)
 		{
 			if (camera.read(frame))
 			{
-				Highgui.imwrite("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Frames/"+(i++)+".jpg", frame);
+				Highgui.imwrite("C:/Users/jonaranjo/OneDrive/TEC/ACS/INVESTIGACIONES/IMAGE PROCESSING/Frames/"+(i++)+".jpg", frame);
 			}
 			else
 			{
 				break;
 			}
 		}
-	*/	
+		
 	}
 }
