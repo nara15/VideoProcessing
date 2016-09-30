@@ -24,7 +24,6 @@ public class Green
 		hsv.create(image.size(), CvType.CV_8U);
 		Imgproc.cvtColor(image, hsv, Imgproc.COLOR_BGR2HSV);
 		
-		
 		ArrayList<Mat> planes = new ArrayList<Mat>();
 		Core.split(hsv, planes);
 		
@@ -34,22 +33,16 @@ public class Green
 		
 		//Local variance from image
 		Mat mu = new Mat();
-		Imgproc.blur(normalHSV, mu, new Size(7,7));
+		Imgproc.blur(normalHSV, mu, new Size(5,5));
 		Core.absdiff(mu, normalHSV, mu);
 		Core.pow(mu, 2.0, mu);
 		
-		Mat finalMa = new Mat();
-		Imgproc.threshold(mu, finalMa, 255, 0, Imgproc.THRESH_TOZERO_INV);
-	
-		
 		ShowImage.showResult(mu);
-		
+		//Highgui.imwrite("images/blobs.jpg", mu);
 		
 		hsv.release();
 		image.release();
 		normalHSV.release();
-		finalMa.release();
-		
 		
 	}
 

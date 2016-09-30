@@ -11,8 +11,6 @@ import org.opencv.core.Size;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
-import com.utils.ShowImage;
-
 public class Blue 
 {
 	
@@ -20,14 +18,12 @@ public class Blue
 	{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		
-		
 		Mat image = Highgui.imread("images/result.jpg");
 		
 		Mat hsv = new Mat();
 		hsv.create(image.size(), CvType.CV_8U);
 		Imgproc.cvtColor(image, hsv, Imgproc.COLOR_BGR2HSV);
 		
-	
 		ArrayList<Mat> planes = new ArrayList<Mat>();
 		Core.split(hsv, planes);
 		
@@ -36,20 +32,13 @@ public class Blue
 		Scalar upper_green = new Scalar(85,255,255);
 		//Detect mask with green colors
 		Mat mask = new Mat();
-		mask.create(image.size(), CvType.CV_8U);
 		Core.inRange(planes.get(0), lower_green, upper_green, mask);
-		
-		
-		//Mat res = new Mat();
-		//Core.bitwise_and(image, image,res, mask);
-		
+				
 		//File holes from mask
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_OPEN, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_CLOSE, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		
-		
-		ShowImage.showResult(mask);
-		//ShowImage.showResult(res);
+		Highgui.imwrite("images/field_detected.jpg", mask);
 
 		image.release();
 		hsv.release();
