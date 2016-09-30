@@ -27,55 +27,35 @@ public class Blue
 		hsv.create(image.size(), CvType.CV_8U);
 		Imgproc.cvtColor(image, hsv, Imgproc.COLOR_BGR2HSV);
 		
-
-		
+	
 		ArrayList<Mat> planes = new ArrayList<Mat>();
 		Core.split(hsv, planes);
 		
-		
-			
-		
-		//Color verde
-		//Scalar lower_blue = new Scalar(40,0,0);
-		Scalar lower_blue = new Scalar(40,20,20);
-		Scalar upper_blue = new Scalar(80,255,255);
-		
+		//Bounds to detect green color
+		Scalar lower_green = new Scalar(20,100,100);
+		Scalar upper_green = new Scalar(85,255,255);
+		//Detect mask with green colors
 		Mat mask = new Mat();
 		mask.create(image.size(), CvType.CV_8U);
-		Core.inRange(planes.get(0), lower_blue, upper_blue, mask);
+		Core.inRange(planes.get(0), lower_green, upper_green, mask);
 		
 		
-		Mat res = new Mat();
-		Core.bitwise_and(image, image,res, mask);
+		//Mat res = new Mat();
+		//Core.bitwise_and(image, image,res, mask);
 		
-		
-		//Imgproc.dilate(mask, mask, new Mat(), new Point(-1, -1), 1);
-		//Imgproc.erode(mask, mask, new Mat(), new Point(-1, -1), 2);
-		
-		
+		//File holes from mask
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_OPEN, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		Imgproc.morphologyEx(mask, mask, Imgproc.MORPH_CLOSE, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(40,40)));
 		
 		
 		ShowImage.showResult(mask);
-		ShowImage.showResult(res);
-		
-		
-		
-		
+		//ShowImage.showResult(res);
 
-		
-				
-		
-		
-		
 		image.release();
 		hsv.release();
 		mask.release();
-	//	hola.release();
-		
-		
-		
+
+			
 	}
 
 }

@@ -12,13 +12,9 @@ public class VideoLoad
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat frame = new Mat();
 		VideoCapture camera = new VideoCapture();
-		camera.open("src/soccer_video.avi");
+		camera.open("C:/Users/Jose Mario/Videos/game.avi");
 		
-		int i = 0;
-		
-		camera.read(frame);
-		camera.read(frame);
-		camera.read(frame);
+		//int i = 0;
 		
 		camera.read(frame);
 		

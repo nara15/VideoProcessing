@@ -29,6 +29,7 @@ public class ShowImage
 	        JFrame frame = new JFrame();
 	        frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));
 	        frame.pack();
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setVisible(true);
 	    } catch (Exception e) {
 	        e.printStackTrace();
