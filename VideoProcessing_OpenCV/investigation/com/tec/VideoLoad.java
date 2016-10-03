@@ -12,7 +12,7 @@ public class VideoLoad
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat frame = new Mat();
 		VideoCapture camera = new VideoCapture();
-		camera.open("C:/Users/Jose Mario/Videos/game.avi");
+		camera.open("C:\\Users\\JoseR\\Dropbox\\Publico_proyectos\\Proyecto1\\input\\cut1_360_processed_LAB_2iter.avi");
 		
 		//int i = 0;
 		
