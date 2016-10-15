@@ -12,25 +12,22 @@ public class VideoLoad
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat frame = new Mat();
 		VideoCapture camera = new VideoCapture();
-		camera.open("C:/Users/Jose Mario/Videos/game.avi");
+		camera.open("C:/Users/jonaranjo/Videos/game.avi");
 		
-		//int i = 0;
+		int i = 0;
 		
-		camera.read(frame);
 		
-		Highgui.imwrite("images/result.jpg", frame);
-/*		
 		while(true)
 		{
 			if (camera.read(frame))
 			{
-				Highgui.imwrite("C:/Users/jonaranjo/OneDrive/TEC/ACS/PROYECTOS/IMAGE PROCESSING/Frames/"+(i++)+".jpg", frame);
+				Highgui.imwrite("C:/Users/jonaranjo/Videos/frames/"+(i++)+".jpg", frame);
 			}
 			else
 			{
 				break;
 			}
 		}
-	*/	
+	
 	}
 }
