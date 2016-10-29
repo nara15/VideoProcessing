@@ -1,12 +1,9 @@
 package ws;
 
-import datos.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -30,17 +27,7 @@ public class ProductRestful {
      */
     private static final String SAVE_DIR = "uploadFiles";
 	
-	@Path("/enlistar")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> findAll(){
-		List<Product> result = new ArrayList<Product>();
-		result.add(new Product("ho", 1));
-		result.add(new Product("ho", 2));
-		System.out.println("Exito");
-		return result;
-	}
-	
+
 	@Path("/json")
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
