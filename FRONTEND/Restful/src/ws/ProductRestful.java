@@ -52,14 +52,17 @@ public class ProductRestful {
 			part.write(savePath + File.separator + path[path.length - 1]);
 			
 		}
+		
+		model.TestOpenCV.run();
+		
 		return savePath;
 	}
 	
 	@Path("/descarga")
 	@GET
 	@Produces("text/plain")
-	public void downloadFile(@Context HttpServletResponse response) throws IOException {
-		
+	public void downloadFile(@Context HttpServletResponse response) throws IOException 
+	{
 		// Dirección del video en el servidor
 		String path = "C://ACS//game.avi";
 		File file = new File(path);
